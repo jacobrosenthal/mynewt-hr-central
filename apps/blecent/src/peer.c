@@ -58,6 +58,12 @@ peer_dsc_disced(uint16_t conn_handle, const struct ble_gatt_error *error,
                 uint16_t chr_def_handle, const struct ble_gatt_dsc *dsc,
                 void *arg);
 
+struct peer *
+peer_find_first()
+{
+    return SLIST_FIRST(&peers);
+}
+
 static struct peer *
 peer_find(uint16_t conn_handle)
 {
@@ -435,7 +441,7 @@ peer_disc_chrs(struct peer *peer)
 int
 peer_svc_is_empty(const struct peer_svc *svc)
 {
-    return svc->svc.end_handle < svc->svc.start_handle;
+    return svc->svc.end_handle <= svc->svc.start_handle;
 }
 
 static struct peer_svc *

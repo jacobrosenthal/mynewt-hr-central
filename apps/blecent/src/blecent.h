@@ -41,13 +41,6 @@ extern struct log blecent_log;
 #define BLECENT_LOG(lvl, ...) \
     LOG_ ## lvl(&blecent_log, BLECENT_LOG_MODULE, __VA_ARGS__)
 
-#define BLECENT_SVC_ALERT_UUID              0x1811
-#define BLECENT_CHR_SUP_NEW_ALERT_CAT_UUID  0x2A47
-#define BLECENT_CHR_NEW_ALERT               0x2A46
-#define BLECENT_CHR_SUP_UNR_ALERT_CAT_UUID  0x2A48
-#define BLECENT_CHR_UNR_ALERT_STAT_UUID     0x2A45
-#define BLECENT_CHR_ALERT_NOT_CTRL_PT       0x2A44
-
 /** Misc. */
 void print_bytes(const uint8_t *bytes, int len);
 void print_mbuf(const struct os_mbuf *om);
@@ -98,6 +91,8 @@ struct peer {
     peer_disc_fn *disc_cb;
     void *disc_cb_arg;
 };
+
+struct peer * peer_find_first();
 
 int peer_disc_all(uint16_t conn_handle, peer_disc_fn *disc_cb,
                   void *disc_cb_arg);
