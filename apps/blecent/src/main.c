@@ -24,6 +24,13 @@
 #include "bsp/bsp.h"
 #include "os/os.h"
 
+#if MYNEWT_VAL(SPLIT_APPLICATION)
+#include "imgmgr/imgmgr.h"
+#include "hal/hal_system.h"
+#include "hal/hal_watchdog.h"
+#include "hal/hal_gpio.h"
+#endif
+
 /* BLE */
 #include "nimble/ble.h"
 #include "controller/ble_ll.h"
@@ -474,6 +481,20 @@ blecent_on_sync(void)
     blecent_scan();
 }
 
+#if MYNEWT_VAL(SPLIT_APPLICATION)
+static void
+enter_loader(struct os_event *ev)
+{
+    int rc;
+
+    rc = imgmgr_state_set_pending(0,0);
+    assert(rc == 0);
+
+    hal_watchdog_tickle();
+    hal_system_reset();
+}
+#endif
+
 /**
  * main
  *
@@ -491,6 +512,19 @@ main(void)
 
     /* Initialize OS */
     sysinit();
+
+#if MYNEWT_VAL(SPLIT_APPLICATION)
+    {
+        /* If button is enabled, go back to loader */
+        rc = hal_gpio_init_in(MYNEWT_VAL(BLECENT_LOADER_BUTTON_PIN), MYNEWT_VAL(BLECENT_LOADER_BUTTON_CFG));
+        assert(rc == 0);
+
+        if(hal_gpio_read(MYNEWT_VAL(BLECENT_LOADER_BUTTON_PIN)) == MYNEWT_VAL(BLECENT_LOADER_BUTTON_VAL))
+        {
+            enter_loader(NULL);
+        }
+    }
+#endif
 
     /* Initialize the blecent log. */
     log_register("blecent", &blecent_log, &log_console_handler, NULL,

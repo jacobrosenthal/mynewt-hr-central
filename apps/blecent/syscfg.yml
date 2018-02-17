@@ -18,6 +18,20 @@
 
 # Package: apps/blecent
 
+syscfg.defs:
+    BLECENT_LOADER_BUTTON_PIN:
+        description: >
+            Pin to check on startup to go back to loader.
+        value: 'BUTTON_1'
+    BLECENT_LOADER_BUTTON_CFG:
+        description: >
+            Pull for BLECENT_LOADER_BUTTON_PIN
+        value: 'HAL_GPIO_PULL_DOWN'
+    BLECENT_LOADER_BUTTON_VAL:
+        description: >
+            Value considered enabled for BLECENT_HR_BUTTON_PIN
+        value: 1
+
 syscfg.vals:
     # DEBUG logging is a bit noisy; use INFO.
     LOG_LEVEL: 1
