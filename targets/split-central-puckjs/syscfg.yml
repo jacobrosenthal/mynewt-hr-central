@@ -1,0 +1,49 @@
+### Package: targets/split-central-puckjs
+
+syscfg.vals:
+    LOG_LEVEL: 3
+
+    # Log reboot messages to a flash circular buffer.
+    REBOOT_LOG_FCB: 1
+    LOG_FCB: 1
+    CONFIG_FCB: 1
+
+    LOG_SOFT_RESET: 1
+
+    #blecent specific
+    BLE_MAX_CONNECTIONS: 1 #should already be set, but be explicit
+    TIMER_1: 1 #debouncing
+    BLECENT_DEBOUNCE_TIMER: 1
+    PWM_0: 1
+
+    BLECENT_LOADER_BUTTON_PIN: 'BUTTON_1'
+    BLECENT_LOADER_BUTTON_CFG: 'HAL_GPIO_PULL_DOWN'
+    BLECENT_LOADER_BUTTON_VAL: 1
+    BLECENT_HR_BUTTON_PIN: 'BUTTON_1'
+    BLECENT_HR_BUTTON_CFG: 'HAL_GPIO_PULL_DOWN'
+    BLECENT_HR_BUTTON_VAL: 1
+    BLECENT_HR_LED_PIN: 'LED_3'
+    BLECENT_HR_LED_INVERTED: false
+
+    # fix for polar h7 https://github.com/apache/mynewt-core/pull/257/files
+    BLE_LL_CONN_INIT_MIN_WIN_OFFSET: 2
+
+    #bleprph specific
+    # Dont let bleprph disable central and observer roles.
+    BLE_ROLE_BROADCASTER: 1
+    BLE_ROLE_CENTRAL: 1
+    BLE_ROLE_OBSERVER: 1
+    BLE_ROLE_PERIPHERAL: 1
+
+    # OS main/default task
+    OS_MAIN_STACK_SIZE: 468
+
+    # Lots of smaller mbufs are required for newtmgr using typical BLE ATT MTU
+    # values.
+    MSYS_1_BLOCK_COUNT: 22
+    MSYS_1_BLOCK_SIZE: 110
+
+    # Enable newtmgr commands.
+    STATS_NEWTMGR: 1
+    LOG_NEWTMGR: 1
+    CONFIG_NEWTMGR: 1
