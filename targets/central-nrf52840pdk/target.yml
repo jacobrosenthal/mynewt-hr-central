@@ -1,0 +1,4 @@
+### Target: targets/central-nrf52840pdk
+target.app: "@apache-mynewt-core/apps/blecent"
+target.bsp:  "@apache-mynewt-core/hw/bsp/nrf52840pdk"
+target.build_profile: "optimized"
