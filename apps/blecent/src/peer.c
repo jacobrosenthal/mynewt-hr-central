@@ -715,6 +715,12 @@ peer_add(uint16_t conn_handle)
     return 0;
 }
 
+struct peer *
+peer_find_first()
+{
+    return SLIST_FIRST(&peers);
+}
+
 static void
 peer_free_mem(void)
 {
