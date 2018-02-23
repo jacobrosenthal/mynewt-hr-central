@@ -1,0 +1,9 @@
+### Package: targets/central-nrf52840pdk
+pkg.name: "targets/central-nrf52840pdk"
+pkg.type: "target"
+pkg.description: 
+pkg.author: 
+pkg.homepage: 
+
+pkg.deps:
+  - "@apache-mynewt-core/sys/console/full"

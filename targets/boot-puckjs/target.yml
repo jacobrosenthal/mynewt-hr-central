@@ -1,0 +1,4 @@
+### Target: targets/boot-puckjs
+target.app: "@apache-mynewt-core/apps/boot"
+target.bsp: "@apache-mynewt-core/hw/bsp/puckjs"
+target.build_profile: "optimized"

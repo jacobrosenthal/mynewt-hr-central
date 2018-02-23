@@ -1,0 +1,8 @@
+### Package: targets/boot-puckjs
+pkg.name: "targets/boot-puckjs"
+pkg.type: "target"
+pkg.description: 
+pkg.author: 
+pkg.homepage: 
+
+pkg.deps:

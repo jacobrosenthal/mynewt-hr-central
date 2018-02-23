@@ -111,6 +111,7 @@ const struct peer_svc *
 peer_svc_find_uuid(const struct peer *peer, const ble_uuid_t *uuid);
 int peer_delete(uint16_t conn_handle);
 int peer_add(uint16_t conn_handle);
+struct peer * peer_find_first();
 int peer_init(int max_peers, int max_svcs, int max_chrs, int max_dscs);
 
 #ifdef __cplusplus

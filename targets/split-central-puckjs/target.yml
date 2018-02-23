@@ -1,0 +1,5 @@
+### Target: targets/split-central-puckjs
+target.app: apps/blecent
+target.bsp:  "@apache-mynewt-core/hw/bsp/puckjs"
+target.build_profile: "optimized"
+target.loader: "@apache-mynewt-core/apps/bleprph"
